@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Yalnızlık Ölçer Pro v1.0</title>
+    <style>
+        body { background-color: #1a1a1a; color: #ff69b4; font-family: 'Courier New', Courier, monospace; text-align: center; padding-top: 50px; }
+        #scanner { width: 300px; height: 300px; border: 5px border-radius: 50%; border: 5px solid #ff69b4; margin: 0 auto; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        #scan-line { position: absolute; width: 100%; height: 5px; background: #ff69b4; top: 0; animation: scan 2s linear infinite; display: none; }
+        @keyframes scan { from { top: 0; } to { top: 100%; } }
+        button { background: #ff69b4; color: white; border: none; padding: 15px 30px; font-size: 1.2rem; cursor: pointer; margin-top: 20px; border-radius: 10px; }
+        #result { margin-top: 30px; font-size: 1.5rem; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>💘 Yalnızlık Analiz Merkezi 💘</h1>
+    <p>Kamera açılıyor... Lütfen ekrana yaklaşın.</p>
+
+    <div id="scanner">
+        <div id="scan-line"></div>
+        <span id="status">ANALİZE HAZIR</span>
+    </div>
+
+    <button onclick="startScan()">ANALİZİ BAŞLAT</button>
+
+    <div id="result"></div>
+
+    <script>
+        function startScan() {
+            const status = document.getElementById('status');
+            const scanLine = document.getElementById('scan-line');
+            const result = document.getElementById('result');
+            
+            status.innerText = "TARANIYOR...";
+            scanLine.style.display = "block";
+            result.innerText = "";
+
+            // Simülasyon süreci
+            setTimeout(() => { status.innerText = "BİYOMETRİK VERİ ALINIYOR..."; }, 1500);
+            setTimeout(() => { status.innerText = "YALNIZLIK SEVİYESİ HESAPLANIYOR..."; }, 3000);
+            
+            setTimeout(() => {
+                scanLine.style.display = "none";
+                status.innerText = "ANALİZ TAMAMLANDI!";
+                result.innerHTML = "⚠️ KRİTİK SEVİYE: %100 YALNIZLIK TESPİT EDİLDİ! <br><br> Yakınlarda sevgili belirtisi yok. <br> Öneri: Hemen bir kedi sahiplen veya ZÜZÜ'de 'Ders Çalış' görevi oluştur.";
+                result.style.color = "#ff0000";
+            }, 5000);
+        }
+    </script>
+
+</body>
+</html>
